@@ -1,10 +1,27 @@
-const express = require("express");
+import express from "express";
+import Database from "better-sqlite3";
 const app = express();
 const port = process.env.PORT || 3001;
+const db = new Database("app.db");
+app.set("view engine", "ejs");
 
-app.get("/", (req, res) => res.type('html').send(html));
+app.get("/", (_req, res) => res.type("html").send(html));
 
-const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.get("/items", (_req, res) => {
+  try {
+    const items = db
+      .prepare("SELECT id, name, notes FROM items ORDER BY id")
+      .all();
+    res.render("items-list", { items: items });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal server error");
+  }
+});
+
+const server = app.listen(port, () =>
+  console.log(`Example app listening on port ${port}!`),
+);
 
 server.keepAliveTimeout = 120 * 1000;
 server.headersTimeout = 120 * 1000;
@@ -56,6 +73,7 @@ const html = `
     <section>
       Hello from Christian!
     </section>
+    <a href="/items">Checkout the database!</a>
   </body>
 </html>
-`
+`;

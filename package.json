@@ -1,5 +1,6 @@
 {
   "name": "express-hello-world",
+  "type": "module",
   "version": "1.0.0",
   "description": "Express Hello World on Render",
   "main": "app.js",
@@ -12,6 +13,7 @@
   },
   "dependencies": {
     "better-sqlite3": "^12.6.2",
+    "ejs": "^4.0.1",
     "express": "^5.0.0"
   }
 }
