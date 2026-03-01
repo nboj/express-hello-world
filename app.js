@@ -66,6 +66,14 @@ app.post("/items/create", (req, res) => {
     }
 });
 
+app.get("/pi", (_req, res) => {
+    res.json(
+        JSON.stringify({
+            pi: Math.PI,
+        }),
+    );
+});
+
 app.get("/items/update/:id", (req, res) => {
     const id = req.params.id;
     try {
