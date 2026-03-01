@@ -1,20 +1,55 @@
 <html>
+<head>
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.
+css"
+rel="stylesheet">
+<link
+href="https://fonts.googleapis.com/icon?family=Material+Icons"
+rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-4">
 <body>
-    <h1>Items</h1>
-    <table border="1" cellpadding="6">
-        <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Notes</th>
-        </tr>
-        <% for (let item of items) { %>
-            <tr>
-                <td><%= item.id %></td>
-                <td><%= item.name %></td>
-                <td><%= item.notes %></td>
-            </tr>
-            3 / 6
-        <% } %>
-    </table>
+<h1 class="mb-4">Items</h1>
+<table class="table table-striped table-bordered align-middle">
+<thead class="table-dark">
+<tr>
+<th>ID</th>
+lesson-11-making-pages-look-nice.md 2026-02-10
+3 / 6
+<th>Name</th>
+<th>Notes</th>
+<th class="text-center">Edit</th>
+<th class="text-center">Delete</th>
+</tr>
+</thead>
+<tbody>
+<% for (let item of items) { %>
+<tr>
+<td><%= item.id %></td>
+<td><%= item.name %></td>
+<td><%= item.notes %></td>
+<td class="text-center">
+<a class="btn btn-sm btn-warning"
+href="/items/update/<%= item.id %>">
+<span class="material-icons">edit</span>
+</a>
+</td>
+<td class="text-center">
+<a class="btn btn-sm btn-danger"
+href="/items/delete/<%= item.id %>">
+<span class="material-icons">delete</span>
+</a>
+</td>
+</tr>
+<% } %>
+</tbody>
+</table>
+<a class="btn btn-primary" href="/items/create">
+Create New Item
+</a>
+</p>
+</div>
 </body>
 </html>
